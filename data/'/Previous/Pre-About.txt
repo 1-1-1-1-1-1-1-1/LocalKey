@@ -1,0 +1,39 @@
+Written after placing it to this folder:
+<Mainly none>
+===============================================================================
+
+Gratitudes to writers of https://habr.com/ru/post/374997/ and https://badeud.ru/post/2/ :)
+
+It's a tool to simply hack the http://www.humansnotinvited.com/ access. (Who knows, will understand it.) :)
+-----------------------------------------------------------------------------------------------------------
+
+Pre-words:
+    0.1 WARNING: The words of this note are said from the time when they were written, some things were changed later.
+    0.2 Folders "'" state for not really main.
+    0.3 Time: as in Ukraine.
+
+
+1. File "info.json" should be not renamed (also the folder "data", the folder "hasht", file "configs.ini" and the file "read_html.py"). In this sense the folder "'" and files "scruct_it.py", "file.py", "About.txt" are free. Folder "Sctructions" is used just for the "struct_it.py". Other files or folders here do not exist.
+
+2. Main here: file.py, info.json, struct_it.py, <all sctructions> (currently — Sctructions), data\pictures.
+
+* Folder data: temporary and pictures (all). Saving pictures could be enabled manually.
+* hasht and read_html — additional sctructures, are used in the file.py.
+* sctruct_it.py — additional here file.
+    Source: "info.json" (as I understand, only this).
+    It's savings: could be set manually, defautly while writing it — file "sctructed_{pid}.json" in the folder Sctructions (pid in an ID of the running process).
+
+# Some screenshots were saved to the folder of scr-s on the computer.
+## Time of finishing main writing of this note: 22.05.2020 0:58.
+## Real writing of this thing (you can name it a project, doesn't matter) was started by me at 21.05.2020. Before it there were just some little thoughts and thinkings.
+
+22.05.2020 at 15:56 — Done!
+-----------------------------------------------------------------------------------------------------------
+Some info is in data/Structions. There go all structed by "_sctruct_it.py" and "get_answers.py".
+
+Savings all pictures could be easily enabled or disables. With saving in lasts much more longer.
+Mark: *.json files could be easily viewed and after renaming them to *.txt 
+
+------------------------------------------------------------------------------------------------------------------
+Main here files-workers: file.py and get_answers.py.
+They and the file _struct_it.py could be run througt the usual console.

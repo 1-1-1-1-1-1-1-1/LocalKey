@@ -1,0 +1,16 @@
+Topic | Times it appeared | Saved pictures | Losed
+--------------------------------------------------
+'\n'.join(' ' + ' | '.join(
+	[topic.ljust(13), str(data[topic]['counts']).ljust(17), str(d[topic]['saved']).ljust(14), str(d[topic]['losed']).ljust(5)])
+
+------------------------------------------------------
+| Topic | Times it appeared | Saved pictures | Losed |
+------------------------------------------------------
+
+----------------------------------------------------
+Topic | Times it appeared | Saved pictures | Losed |
+----------------------------------------------------
+
+-----------------------------------------------------
+ Topic | Times it appeared | Saved pictures | Losed |
+-----------------------------------------------------

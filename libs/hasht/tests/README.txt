@@ -1,0 +1,1 @@
+Real __init__ here is ``versions.py`` and ``Test.py``. ``__init__.py`` is a file, which was an __init__ on this lib earlier.

@@ -1,0 +1,20 @@
+Tasks:
+* **Make this code simple and clear.**
+* Especially make the code of libs/read_html.py clear. (1)
+
+Local tasks by the pathname:
+============================
+About
+action.py
+data - make the structions there complete in their full current.
+data — копия
+file.py
+get_answers.py
+libs - (1)
+Local
+open_cmd.py
+README.md
+TODO.txt
+_struct_it.py
+__main__.py
+__pycache__
