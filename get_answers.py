@@ -1,6 +1,12 @@
 # Possible TODO task: beautify in table a part of "min. percentage" at (1).
 # Example: run it with `percentage = 0`.
 #
+# (1'): `"{:.<n>}".format(<...>)` seems to work sometimes strangely.
+# Example:
+#     >>> "{:.1}".format(1/11)
+#     '0.09'
+# What is it? Just a bug at Python?
+#
 # Other marks: (2), (3).
 
 
@@ -44,37 +50,41 @@ def main(filename):
 
         hashes = data[topic]['hashes']
 
-        saved = 0; losed = 0; minimals = list()
+        saved = 0; lost = 0; minimals = list()
         for _hash_ in hashes:
             try:
                 with open(f'data/pictures/{_hash_}.png', 'rb') as f:
                     text = f.read()
 
-                with open(folder + "{}/{}_{}_{}.png".format(topic,
-                                                            data[topic]['counts'],
-                                                            hashes[_hash_],
-                                                            _hash_), 'wb') as f:
+                with open(folder + "{}/{}_{}_{}.png".format(
+                                        topic,
+                                        data[topic]['counts'],
+                                        hashes[_hash_],
+                                        _hash_
+                                        ), 'wb') as f:
                     f.write(text)
 
                 minimals.append((hashes[_hash_], data[topic]['counts']))
 
                 saved += 1
             except:
-                losed += 1
+                lost += 1
 
         minimals.sort(key=lambda p: p[0] / p[1])
 
-        if minimals:  # Deprecated? # (2)
+        if minimals:  # Deprecated?  (2)
             p0, p1 = minimals[0]
         d.update({topic: {
-                          'losed': losed,
                           'saved': saved,
-                          'minimal': '{:<3} / {:<3} ≈ {:.2}'.format(p0, p1, p0 / p1) \
-                                         if minimals else 'None'}  # (1)
+                          'lost': lost,
+                          'minimal': '{:<3} / {:<3} ≈ {:.2}'.format(p0,
+                                                                    p1,
+                                                                    p0 / p1) \
+                                         if minimals else 'None'}  # (1), (1')
                  })
         print(f'Ready with topic "{topic}".')
 
-    print(f'\nLogging info to the file {LOG_TO}...')
+    print(f'\nLogging info to the file "{LOG_TO}"...')
 
     args = (__file__.rsplit('\\', maxsplit=1)[1],
             now().strftime('%d.%m.%Y %T'),
@@ -94,7 +104,7 @@ WARNING: ALL files of this directory dirs are deleted (EACH TIME) directly befor
 Format of each picture name: <A>_<B>_<C>.png, where:
    A = total requests with THIS topic,
    B = times the picture appeared THERE,
-   C = the according picture's md5 hash.
+   C = the according picture's hash.
 
   Example: 66_28_6337b306b6dcb7f6dc4c2fbbd997855d.png.
 -----------------------------------------------------------------------------------------------
@@ -106,34 +116,36 @@ Format of each picture name: <A>_<B>_<C>.png, where:
 
     info += """
 
------------------------------------------------------------------------------
-               |                          |             Pictures             
-     Topic     | Times the topic appeared |----------------------------------
-               |                          | Saved | Losed | Min. percentage  
------------------------------------------------------------------------------
+----------------------------------------------------------------------------
+               |                          |            Pictures             
+     Topic     | Times the topic appeared |---------------------------------
+               |                          | Saved | Lost | Min. percentage  
+----------------------------------------------------------------------------
 """ + '\n'.join([' ' + ' | '.join(
                                   [topic.ljust(13),
                                    str(data[topic]['counts']).ljust(24),
                                    str(d[topic]['saved']).ljust(5),
-                                   str(d[topic]['losed']).ljust(5),
+                                   str(d[topic]['lost']).ljust(4),
                                    str(d[topic]['minimal']).ljust(16)
                                    ]
                                   ) + ' ' for topic in data]) \
-    + '\n—————————————————————————————————————————————————————————————————————————————'
-    
+    + "\n\
+————————————————————————————————————————————————————————————————————————————"
+
     with open(LOGFILE, 'w', encoding='utf-8') as f:
         f.write(info)
 
 
 if __name__ == '__main__':
-    percentage = eval(input("Percentage (either a number from 0 to 1, or a pair): "))
-        # Note: (*) from _struct_it.
+    percentage_i_p = "Percentage (either a number from 0 to 1, or a pair): "
+    percentage = eval(input(percentage_i_p))
+        # Note: (*) from the file _struct_it.
 
     print()
     struct(to_file=TMP_NAME, percentage=percentage)
 
     tmp_filename = STRUCTIONS_STORAGE + TMP_NAME
-    # It's a folder, where an info was just sctructed to (in ``struct``).
+    # It's a folder, where an info was just structed to (in ``struct``).
 
     main(tmp_filename)
     os.remove(tmp_filename)

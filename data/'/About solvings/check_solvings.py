@@ -9,16 +9,15 @@ SLEEP_FOR = 60  # Seconds
 
 def main():
     with open('Unsolved.txt') as f:
-        files = f.read().split('\n')
+        filenames = f.read().split('\n')
 
     def info(j):
-        with open('pictures_savings/' + j, 'rb') as f, \
-            open('pictures_savings/' + j, 'rb') as g:
-            return f.read().count(b'\n')  # It seems to be not really great:
-                                          # does it really counts a number
-                                          # of lines in the file?
+        with open('pictures_savings/' + j, 'rb') as f:
+            return f.read().count(b'\n')  # As I saw, it may work not really
+                                          # great: does it really counts a
+                                          # number of lines in the file?
 
-    for j in files:
+    for j in filenames:
         print(j, info(j), sep=': ')
 
     #t:  print(info('00f0446c4ff0a9d72008d744aee94f0b.png'))
@@ -33,7 +32,8 @@ if RUN_MODE == 2:
     counter = 1
     try:
      while True:
-        print("=== Attempt number {:=<4}==================".format(str(counter) + ' '))
+        print("\
+=== Attempt number {:=<4}==================".format(str(counter) + ' '))
         main()
         print()
         sleep(SLEEP_FOR)

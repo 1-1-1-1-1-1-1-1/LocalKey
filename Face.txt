@@ -2,45 +2,51 @@ Words about this building's structure
 =====================================
 
 
-> View `names.py` for words about renaming files of this sctructure.
+> View `names.py` for words about renaming files of this structure.
 
-Folders with name `'` are folders of data, which is at least one of the following: deprecated, not main, a part of tests, not active programs.
+Folders with name `'` are folders of data, which is at least one of the
+following: deprecated, not main, a part of tests, not active programs.
 
+`.gitignore` — just for a use with Git (not essential).
 `libs/` — some libraries, which are used here (mainly at `file.py`).
 `open_cmd.py` is a tool to open cmd.exe in its folder.
 `data/` and `names.py` are storages.
 
-Some constrcuctions are in `data/Structions/`; there go all structed by files `_struct_it.py` and `get_answers.py`.
+Some structions are in `data/Structions/`; there go all structed by files
+`_struct_it.py` and `get_answers.py`.
 
-Main here files-workers: `file.py`, `get_answers.py` and `action.py`. They and the file `_struct_it.py` could be run through the console.
+Main here files-workers: `file.py`, `get_answers.py` and `action.py`. They and
+the file `_struct_it.py` could be run through the console.
 
 
 This building's description:
-     file.py // It collects the statistics info (by the default — to `data/info.json`, edit — at `names.py`)
-        |
+     file.py // It collects the statistics info
+        |    // (by default — to the `data/info.json`, edit — at `names.py`)
         |
         v
   _struct_it.py // It structs the info to the given file with a given percentage
-                // (defaultly to the `data/Structions/structed_{PID}.json`)
-        |
-        |
-        v
-  get_answers.py // It groups the collected data. The result is suggested to be answers
-        |
+        |       // (by default — to the `data/Structions/structed_{PID}.json`)
         |
         v
-    action.py // It gives an answer (suggested) to the exect question.
+  get_answers.py // It groups the collected data.
+        |        // The result of it is suggested to be answers.
+        |
+        v
+    action.py // It gives an answer (suggested) to the exact question.
               // Input is a page's code.
 
 
-——————————————————————————————————————————————————————————————————————————————
+———————————————————————————————————————————————————————————————————————————————
 
-The written questions to these files were stored at begginings of those files.
+The written questions to these files were stored at beginnings of those files.
 
 ==========================
 Other questions and TODOs:
 
 1. libs, names.py, file.py, _struct_it.py, get_answers.py, action.py: Done?
-2. action.py: maybeTODO: The thing with "enable stop-word"
+2. action.py: maybe-TODO: The thing with "enable stop-word"
 
-I wanted to do a Tkinter version of ``action`` in ``action.py``, but it failed: I hadn't seen the result's output on the PC's screen for a quite long time, however that time it was in the console. The code of that program is in ``_tkaction.py`` (folder `'` in `data/`).
+I wanted to do a Tkinter version of ``action`` in ``action.py``, but it failed:
+I hadn't seen the result's output on the PC's screen for a quite long time,
+however that time it was in the console. The code of that program is in
+``_tkaction.py`` (folder `'` in `data/`).

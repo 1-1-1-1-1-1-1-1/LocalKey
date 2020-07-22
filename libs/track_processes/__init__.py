@@ -59,7 +59,7 @@ Exception: {}""".format(type(e), e))
 
 
 # NOTE: if 2 processes are launched in one time, could it help?
-# However this function is quite fast.
+# However this function's performing seems to be quite fast.
 def local_action_v2(ini_filename):
     import psutil
     from os import getpid
@@ -69,23 +69,23 @@ def local_action_v2(ini_filename):
     c.read(ini_filename)
 
     def get_code():
-    	if 'last_running_pid' not in c.options('main'):
-    		return 0
-    	else:
-    	    last_pid = c.getint('main', 'last_running_pid')
+        if 'last_running_pid' not in c.options('main'):
+            return 0
+        else:
+            last_pid = c.getint('main', 'last_running_pid')
 
-    	    try:
-    	        assert not psutil.pid_exists(last_pid)
-    	        exit_code = 0
-    	    except AssertionError:
-    	    	exit_code = 1
+            try:
+                assert not psutil.pid_exists(last_pid)
+                exit_code = 0
+            except AssertionError:
+                exit_code = 1
 
-    	    return exit_code
+            return exit_code
     
     exit_code = get_code()
 
     if exit_code != 0:
-    	return exit_code
+        return exit_code
 
     pid = getpid()
     c.set('main', 'last_running_pid', str(pid))
@@ -97,14 +97,14 @@ def local_action_v2(ini_filename):
 
 
 def local_action(*args, **kwargs):
-	"""Assert that last launched process is not running.
+    """Assert that last launched process is not running.
 
-	Return
-	------
-	Positive answer -> 0.
-	Negative (assertion error) -> 1.
-	Another error -> 10.
-	"""
-	code = local_action_v2(*args, **kwargs)
+    Return
+    ------
+    Positive answer -> 0.
+    Negative (assertion error) -> 1.
+    Another error -> 10.
+    """
+    code = local_action_v2(*args, **kwargs)
 
-	return code
+    return code

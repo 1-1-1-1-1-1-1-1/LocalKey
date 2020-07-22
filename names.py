@@ -1,4 +1,4 @@
-# Active names, which are not reserved here yet and thus could be
+# Active names, which are not reserved here yet and thus can be
 # edited greatly (with no effect of collapse, if it is doing not by the
 # program's crasher), were additionally marked here.
 

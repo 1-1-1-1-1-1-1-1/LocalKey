@@ -26,7 +26,7 @@ try:
     assert not STRUCTIONS_STORAGE + BASIC_FILENAME in \
         os.listdir(STRUCTIONS_STORAGE)
 except:
-    input('Woops: a rare error occured! Try to reload the program.')
+    input('Woops: a rare error occurred! Try to reload the program.')
     os.kill(os.getpid(), 0)
 
 
@@ -36,8 +36,6 @@ del os
 def struct_v1(to_file=BASIC_FILENAME, percentage=(0, 1)):
     with open(JSON, encoding='utf-8') as f:
         data = json.load(f)
-
-    total_requests = len(data)
 
     d = {}
     for i in data:
@@ -66,6 +64,8 @@ def struct_v1(to_file=BASIC_FILENAME, percentage=(0, 1)):
 
         d.update({topic: {'counts': topic_counts, 'hashes': d0}})
 
+    total_requests = len(data)  # Does it helps to work [a bit] faster?
+
     # Now ``data`` is already used.
     del data
 
@@ -78,7 +78,7 @@ def struct_v1(to_file=BASIC_FILENAME, percentage=(0, 1)):
     for topic in d:
         hashesd = d[topic]['hashes']
         topic_counts = d[topic]['counts']
-        
+
         hashesd = {key: hashesd[key] for key in hashesd
                        if _min <= hashesd[key] / topic_counts <= _max}
 
@@ -102,8 +102,8 @@ def struct_v2(to_file=BASIC_FILENAME, percentage=(0, 1)):
 
     def unite(*dicts) -> dict:  ## ``dicts`` should be of a positive length.
         """Special uniting of ``dict`` objects. Example:
-        ``unite({'a': 1, 'b': 2}, {'a': 100})`` ->
-                       -> ``{'a': 101, 'b': 2}``. (101 = 100 + 1)
+        ``unite({'a': 1, 'b': 2}, {'a': 100})'' ->
+                       -> ``{'a': 101, 'b': 2}''. (101 = 100 + 1)
         """
         if len(dicts) == 1:
             return dicts[0]
@@ -148,10 +148,10 @@ def struct_v2(to_file=BASIC_FILENAME, percentage=(0, 1)):
     for topic in d:
         hashesd = d[topic]['hashes']
         topic_counts = d[topic]['counts']
-        
+
         hashesd = {key: hashesd[key] for key in hashesd \
                        if _min <= hashesd[key] / topic_counts <= _max}
-        
+
         d.update({topic: {'counts': topic_counts, 'hashes': hashesd}})
 
     # Dumping the resulting data:
@@ -178,12 +178,12 @@ if IS_TEST:
     measure_time('struct_v1')
     measure_time('struct_v2')
 
-    __import__("sys").exit(None)
+    __import__("sys").exit("End of test.")
 
 
 # According to the tests' results, which I saw, the ``struct_v2`` function
-# seems to be much faster than ``struct_v1``.
-struct = struct_v2  
+# seems to be much faster (nearly twice) than ``struct_v1``.
+struct = struct_v2
 
 
 def main():

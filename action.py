@@ -1,11 +1,11 @@
-# This file states for getting the suggested answers for the exect 
+# This file states for getting the suggested answers for the exact
 # question of http://www.humansnotinvited.com/.
 
 # As for me, the ``action`` requires Internet connection. Is getting
 # the file's hash there possible without it?
 
 # Should earlier versions be removed?
-# Are all slashes essential here?
+# Are all slashes needed here?
 
 
 __all__ = ['table', 'action', 'main']
@@ -25,7 +25,7 @@ except:
     None
 
 
-def table_v0():  # It was earlier
+def table_v0():  # It was earlier.
     table0 = """\
 —————————————
 | 1 | 2 | 3 |
@@ -58,25 +58,25 @@ def table(a):
     """
     def _align(line, n_times, *, by_symbol=" "):
         # If trying `"{:=...}".format(str(...))`
-        # (with exect values intead of '...'): 
+        # (with exact values instead of '...'):
         # ``ValueError: '=' alignment not allowed in string format specifier``
         return by_symbol * ((n_times - 1) // 2) + line \
-             + by_symbol * ((n_times) // 2)
+             + by_symbol * (n_times // 2)
 
     columns = 3  # Number of columns.
     line = "╟" + "┼".join([
-                           "─"*a for i in range(columns)  
+                           "─"*a for i in range(columns)
                            ]) + "╢"
     input_line = "║" + "│".join([
                                  _align("{}", a) for i in range(columns)
                                  ]) +"║"
 
-    # These `return` difference is a readibility, not a result.
+    # These `return`s' difference is a readability, not a result.
 
     """return f'╔{"═"*a}╤{"═"*a}╤{"═"*a}╗\n' \
-+ (line + '\n').join(input_line + '\n' for i in range(3)) 
++ (line + '\n').join(input_line + '\n' for i in range(3))
 + f'╚{"═"*a}╧{"═"*a}╧{"═"*a}╝'"""
-    
+
     return f'╔{"═"*a}╤{"═"*a}╤{"═"*a}╗\n' \
 + input_line + '\n' \
 + line + '\n' \
@@ -111,7 +111,7 @@ def action(text):
     answers_h = tuple(filter(lambda hash_: hash_ + '.png' \
                                in list(map(lambda obj: obj.split('_')[-1], possible_answers)),
                            hashes.keys()))
-    
+
     for h in answers_h:
         save_file(hashes[h], LOCAL_ANSWERS + h + '.png')
         """ # Or so:
@@ -130,9 +130,9 @@ def action(text):
         # V0:
         # f.write('1. These are numbers of pictures, which are suggested to be answers: '
         #     + ', '.join(map(str, answers))
-        #     + '.\n2. The table, according to which they are numarated:\n' + TABLE
+        #     + '.\n2. The table, according to which they are numerated:\n' + TABLE
         #     + '\n\n3. All pictures of those were placed to this folder.')  #?
-        
+
         # V1:
         f.write('The table of suggested answers:\n'
                 + table_of_answers(answers)
@@ -154,9 +154,10 @@ def _get_text(*, with_stop=True):
         return '\n'.join(lines())
 
     else:
-        # Alternatively, it could be done by adding a hotkey,
+        # Alternatively, it can be done by adding a hotkey,
         # which interrupts the input.
         pass
+        raise NotImplementedError
 
     '''# Alternatively, it can be done like this:
     all_text = ''
@@ -172,7 +173,7 @@ def _get_text(*, with_stop=True):
             all_text += '\n' + line
         else:
             break
-    
+
     return all_text
     '''
 

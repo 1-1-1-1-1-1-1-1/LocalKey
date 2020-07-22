@@ -2,13 +2,13 @@
 # =======================
 # What is a quite important part here, this program should be better run
 # in a single thread, with no 2 processes of ``single`` at one time.
-# Otherwise, due to possible multiple performings of ``single`` at the
+# Otherwise, due to possible multiple realizations of ``single`` at the
 # same time, a correct value of `N` is not guaranteed.  So here is a
 # group of action, with the implementation of which the condition of
 # running <= 1 programs at once seems to be fulfilled.  To view possible
-# exit codes, see source of that lib or the checker's __doc__.
+# exit codes, see the checker's __doc__ or a source of that lib.
 #
-# Other modules are not needed in this part, so I decided to put them
+# Other imports are not needed in this part, so I decided to put them
 # after it.
 
 
@@ -46,12 +46,12 @@ def get_info(text=None):
 
     if text is None:
         text = requests.get(URL).text
-    
+
     body = Reader(text).reader('body')
     info = body[body.index('content'):]
 
     topic = Reader(text).reader('strong')[1:-1]
-    
+
     def link(n):
         info1 = Reader(info).between('div', n)
         info2 = info1[info1.index('src'):]
@@ -82,7 +82,7 @@ def single(save_it=False):
     # Appending the received info to the already stored:
     with open(JSON, encoding='utf-8') as f:
         data = json.load(f)
-    
+
     data.append(added_info)
 
     with open(JSON, 'w', encoding='utf-8') as f:
@@ -128,7 +128,7 @@ if TEST_MODE == 2:
     single(True); print(time() - t0)
 
 if TEST_MODE:
-    __import__("sys").exit(None)
+    __import__("sys").exit("End of test.")
 
 
 if __name__ == '__main__':

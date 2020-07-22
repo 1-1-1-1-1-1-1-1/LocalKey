@@ -1,1 +1,1 @@
-This instructions are only of diffirent representations.
+These instructions are only of different representations.
